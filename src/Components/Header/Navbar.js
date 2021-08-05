@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./Navbar.scss";
 import { ReactComponent as Logo } from "../../Assets/logo.svg";
 import { auth } from "../../Firebase/firebaseUtilities";
@@ -29,4 +30,8 @@ const Navbar = ({ currentUser }) => (
   </div>
 );
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Navbar);
