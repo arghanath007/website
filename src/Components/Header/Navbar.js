@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import "./Navbar.scss";
 import { ReactComponent as Logo } from "../../Assets/logo.svg";
 import { auth } from "../../Firebase/firebaseUtilities";
+import CartIcon from "../CartIcon/CardIcon";
+import CartDropDown from "../Cart/CartDropDown";
 
-const Navbar = ({ currentUser }) => (
+const Navbar = ({ currentUser, hidden }) => (
   <div className="navbar">
     <Link className="logo-container" to="/">
       <Logo className="logo" />
@@ -26,12 +28,15 @@ const Navbar = ({ currentUser }) => (
           SIGN IN
         </Link>
       )}
+      <CartIcon />
     </div>
+    {hidden ? null : <CartDropDown />}
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Navbar);
