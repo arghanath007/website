@@ -7,6 +7,11 @@ import { auth } from "../../Firebase/firebaseUtilities";
 import CartIcon from "../CartIcon/CardIcon";
 import CartDropDown from "../CartDropDown/CartDropDown";
 
+import { createStructuredSelector } from "reselect";
+
+import { selectCurrentUser } from "../../Redux/User/UserSelector";
+import { selectCartHidden } from "../../Redux/Cart/CartSelectors";
+
 const Navbar = ({ currentUser, hidden }) => (
   <div className="navbar">
     <Link className="logo-container" to="/">
@@ -34,9 +39,14 @@ const Navbar = ({ currentUser, hidden }) => (
   </div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// const mapStateToProps = (state) => ({
+//   currentUser: selectCurrentUser(state),
+//   hidden: selectCartHidden(state),
+// });
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Navbar);
