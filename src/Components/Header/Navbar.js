@@ -5,7 +5,7 @@ import "./Navbar.scss";
 import { ReactComponent as Logo } from "../../Assets/logo.svg";
 import { auth } from "../../Firebase/firebaseUtilities";
 import CartIcon from "../CartIcon/CardIcon";
-import CartDropDown from "../Cart/CartDropDown";
+import CartDropDown from "../CartDropDown/CartDropDown";
 
 const Navbar = ({ currentUser, hidden }) => (
   <div className="navbar">
